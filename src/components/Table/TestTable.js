@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, TableBuilder } from './TableBuilder';
-import InputForm from './InputForm';
-
+import InputFormModal from './InputFormModal';
+import TestInputUserModal from './TestEditUserModal';
 const tableData = {
   headers: [
     'Serial No',
@@ -17,20 +17,26 @@ const tableData = {
     ['3', 'Beaker', 'Glassware', '2020-01-01', 'Store room 1', '100'],
   ],
 };
+const tableData2 = {
+  headers: ['Name', 'Age', 'Salary'],
+  rows: [
+    ['John', '20', '5000'],
+    ['Jane', '21', '6000'],
+    ['Joe', '22', '7000'],
+  ],
+};
 function TestTable() {
-  const handleSave = (editedRow) => {
-    const updatedTableData = [...tableData.rows];
-    updatedTableData.push(Object.values(editedRow));
-    tableData.rows = updatedTableData;
-    console.log(tableData);
-  };
   return (
     <div>
       <Table
         headers={tableData.headers}
         rows={tableData.rows}
-        InputForm={InputForm}
-        onSave={handleSave}
+        InputFormModal={InputFormModal}
+      />
+      <Table
+        headers={tableData2.headers}
+        rows={tableData2.rows}
+        InputFormModal={TestInputUserModal}
       />
     </div>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
 import './Table.css';
 import { useState } from 'react';
-// TableBuilder class to create a table using the builder pattern
+import InputFormModal from './InputFormModal';
+
 class TableBuilder {
   constructor() {
     this.table = {
@@ -27,51 +28,62 @@ class TableBuilder {
 
 // Table component that renders the table
 
-function Table({ headers, rows, InputForm }) {
+function Table({ headers, rows, InputFormModal }) {
   const [tableData, setTableData] = useState([...rows]);
   const [editRowIndex, setEditRowIndex] = useState(null);
-
+  const [modalIsOpen, setIsOpen] = useState(false);
   const handleEdit = (rowIndex) => {
     setEditRowIndex(rowIndex);
   };
 
-  const handleSaveEdit = (rowIndex, updatedRow) => {
+  const handleSaveEdit = (rowData) => {
+    console.log('rowData', rowData);
+
     const updatedTableData = [...tableData];
-    updatedTableData[rowIndex] = updatedRow;
+    updatedTableData[editRowIndex] = rowData;
     setTableData(updatedTableData);
     setEditRowIndex(null);
   };
 
   return (
-    <table className='custom-table'>
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index}>{header}</th>
-          ))}
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tableData.map((row, rowIndex) => (
-          <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'even' : 'odd'}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+    <div>
+      <table className='custom-table'>
+        <thead>
+          <tr>
+            {headers.map((header, index) => (
+              <th key={index}>{header}</th>
             ))}
-            <td>
-              {editRowIndex === rowIndex ? (
-                <InputForm
-                  initialValues={tableData[rowIndex]}
-                  onSave={(updatedRow) => handleSaveEdit(rowIndex, updatedRow)}
-                />
-              ) : (
-                <button onClick={() => handleEdit(rowIndex)}>Edit</button>
-              )}
-            </td>
+            <th>Action</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {tableData.map((row, rowIndex) => (
+            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'even' : 'odd'}>
+              {row.map((cell, cellIndex) => (
+                <td key={cellIndex}>{cell}</td>
+              ))}
+              <td>
+                <button
+                  onClick={() => {
+                    setEditRowIndex(rowIndex);
+                    setIsOpen(true);
+                  }}>
+                  Edit
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {editRowIndex !== null && (
+        <InputFormModal
+          isOpen={modalIsOpen}
+          onRequestClose={() => setEditRowIndex(null)}
+          initialValues={tableData[editRowIndex]}
+          onSave={handleSaveEdit}
+        />
+      )}
+    </div>
   );
 }
 
