@@ -1,0 +1,27 @@
+/* Table.module.css (if using CSS Modules) */
+.custom-table {
+  border-collapse: collapse;
+  width: 75%;
+  border-radius: 15px;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle; /* Center text vertically */
+  border: none;
+}
+
+.custom-table thead {
+  background-color: #d2eff2;
+}
+
+.custom-table tr.even {
+  background-color: #f1faff;
+}
+
+.custom-table tr.odd {
+  background-color: #ffffff;
+}
