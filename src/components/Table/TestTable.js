@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, TableBuilder } from './TableBuilder';
-import InputFormModal from './InputFormModal';
-import TestInputUserModal from './TestEditUserModal';
+import InputFormModal from '../Forms/InputFormModal';
+import TestInputUserModal from '../Forms/TestEditUserModal';
 const tableData = {
   headers: [
     'Serial No',
