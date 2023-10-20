@@ -28,7 +28,7 @@ class TableBuilder {
 
 // Table component that renders the table
 
-function Table({ headers, rows, InputFormModal }) {
+function Table({ headers, rows, InputFormModal, onDelete }) {
   const [tableData, setTableData] = useState([...rows]);
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -69,6 +69,15 @@ function Table({ headers, rows, InputFormModal }) {
                     setIsOpen(true);
                   }}>
                   Edit
+                </button>
+                <button
+                  onClick={() => {
+                    onDelete(rowIndex);
+                    const updatedTableData = [...tableData];
+                    updatedTableData.splice(rowIndex, 1);
+                    setTableData(updatedTableData);
+                  }}>
+                  Delete
                 </button>
               </td>
             </tr>

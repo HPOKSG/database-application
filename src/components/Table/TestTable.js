@@ -32,11 +32,13 @@ function TestTable() {
         headers={tableData.headers}
         rows={tableData.rows}
         InputFormModal={InputFormModal}
+        onDelete={() => {}}
       />
       <Table
         headers={tableData2.headers}
         rows={tableData2.rows}
         InputFormModal={TestInputUserModal}
+        onDelete={() => {}}
       />
     </div>
   );
