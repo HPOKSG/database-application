@@ -1,8 +1,10 @@
 import React from 'react';
 import './Table.css';
 import { useState } from 'react';
-import InputFormModal from './InputFormModal';
-
+import 'font-awesome/css/font-awesome.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 class TableBuilder {
   constructor() {
     this.table = {
@@ -67,8 +69,9 @@ function Table({ headers, rows, InputFormModal, onDelete }) {
                   onClick={() => {
                     setEditRowIndex(rowIndex);
                     setIsOpen(true);
-                  }}>
-                  Edit
+                  }}
+                  className='icon-button'>
+                  <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
                 <button
                   onClick={() => {
@@ -76,8 +79,9 @@ function Table({ headers, rows, InputFormModal, onDelete }) {
                     const updatedTableData = [...tableData];
                     updatedTableData.splice(rowIndex, 1);
                     setTableData(updatedTableData);
-                  }}>
-                  Delete
+                  }}
+                  className='icon-button'>
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </td>
             </tr>
