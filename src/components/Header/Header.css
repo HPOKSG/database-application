@@ -1,0 +1,6 @@
+.header-main-section{
+    display: flex;
+    margin-inline: 1rem;
+    justify-content: space-evenly;
+    flex: 1;
+}

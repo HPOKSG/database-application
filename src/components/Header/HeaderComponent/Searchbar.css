@@ -1,0 +1,31 @@
+@import '../../../styles/base.css';
+.search-bar{
+    display: flex;
+    width: 40%;
+    height: var(--HEADER-HEIGHT);
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px black;
+    text-decoration: none;
+}
+.search-bar input{
+    flex: 1;
+    outline: none;
+    padding-inline: 1rem;
+    font-size: 1.3rem;
+    border: transparent;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.search-button{
+    width: 100px;
+    display: flex;
+    background: var(--DARK-BLUE);
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: var(--WHITE)
+}
+.search-button:hover{
+    cursor: pointer;
+}

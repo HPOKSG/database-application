@@ -1,7 +1,8 @@
 /* Table.module.css (if using CSS Modules) */
 .custom-table {
   border-collapse: collapse;
-  width: 75%;
+  width: 100%;
+  margin-inline: 1rem;
   border-radius: 15px;
 }
 

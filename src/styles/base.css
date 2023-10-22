@@ -1,0 +1,19 @@
+/* Reset padding and margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+:root{
+    font-size: 18px;
+    --WHITE: #fff;
+    --ACCENT-BLUE: #10737F;
+    --DARK-BLUE: #083135;
+    --BACKGROUND-COLOR: #F5F9FA;
+    --ORANGE: #F48A26;
+    --HEADER-HEIGHT: 60px;
+}
+/* Set font */
+body {
+    font-family: "Lucida Console", sans-serif,monospace;
+}

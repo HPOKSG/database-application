@@ -1,0 +1,18 @@
+@import "../../styles/base.css";
+.sidebar{
+    min-width: 275px;
+    height: 100%;
+    display: none;
+    margin-right: 1rem;
+    background-color: var(--WHITE);
+    color: var(--ACCENT-BLUE);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 1px 1px 8px grey;
+}
+
+@media screen and (min-width: 1200px) {
+    .sidebar{
+        display: block;
+    }
+}

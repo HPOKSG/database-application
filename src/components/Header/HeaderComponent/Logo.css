@@ -1,0 +1,17 @@
+@import "../../../styles/base.css";
+.logo {
+    margin-right: 1rem;
+    display: flex;
+    width: 275px;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, var(--ACCENT-BLUE), var(--DARK-BLUE));
+    font-size: 2.7rem;
+    font-weight: bolder;
+    -webkit-background-clip: text;
+    color: transparent; /* Text color is set to transparent */
+  }
+  
+.logo nav{
+    margin-left: 0.5rem;
+}

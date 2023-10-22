@@ -1,0 +1,46 @@
+@import "../../styles/base.css";
+
+.sidebar__item{
+    position: relative;
+    display:flex;
+    height: 75px;
+    font-size: 2rem;
+    font-weight: bolder;
+    align-items: center;
+}
+.show, .sidebar__item:hover{
+    background-color: var(--BACKGROUND-COLOR);
+    cursor: pointer;
+}
+
+/* Display the vertical color icon */
+.clicked{
+    background-color: transparent;
+    margin-left: 0.8rem;
+    height: 65px;
+    width: 8px;
+    left: 0px;
+    top: 5px
+}
+.show .clicked, .sidebar__item:hover .clicked{
+    background-color: var(--ACCENT-BLUE);
+    margin-left: 0.8rem;
+    height: 65px;
+    width: 8px;
+    left: 0px;
+    top: 5px
+}
+.sidebar__content{
+    display: flex;
+    width: 100%;
+    margin-left: 1rem;
+    align-items: center;
+}
+.sidebar__content span{
+    
+}
+.sidebar__content p{
+
+    margin-left: 1.2rem;
+    font-size: 1.2rem;
+}

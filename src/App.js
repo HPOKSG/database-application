@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import Test from './pages/test';
+import './styles/base.css';
 import './App.css';
 
 function App() {
   return (
-    <div className='App'>
+    
       <Test></Test>
-    </div>
+    
   );
 }
 

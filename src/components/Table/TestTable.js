@@ -1,4 +1,5 @@
 import React from 'react';
+import Wrapper from '../Helpers/Wrapper';
 import { Table, TableBuilder } from './TableBuilder';
 import InputFormModal from '../Forms/InputFormModal';
 import TestInputUserModal from '../Forms/TestEditUserModal';
@@ -27,20 +28,20 @@ const tableData2 = {
 };
 function TestTable() {
   return (
-    <div>
+    <Wrapper>
       <Table
         headers={tableData.headers}
         rows={tableData.rows}
         InputFormModal={InputFormModal}
         onDelete={() => {}}
       />
-      <Table
+      {/* <Table
         headers={tableData2.headers}
         rows={tableData2.rows}
         InputFormModal={TestInputUserModal}
         onDelete={() => {}}
-      />
-    </div>
+      /> */}
+    </Wrapper>
   );
 }
 export default TestTable;

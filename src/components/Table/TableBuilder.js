@@ -1,5 +1,6 @@
 import React from 'react';
 import './Table.css';
+import Wrapper from '../Helpers/Wrapper'
 import { useState } from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -48,7 +49,7 @@ function Table({ headers, rows, InputFormModal, onDelete }) {
   };
 
   return (
-    <div>
+    <Wrapper>
       <table className='custom-table'>
         <thead>
           <tr>
@@ -96,7 +97,7 @@ function Table({ headers, rows, InputFormModal, onDelete }) {
           onSave={handleSaveEdit}
         />
       )}
-    </div>
+    </Wrapper>
   );
 }
 
