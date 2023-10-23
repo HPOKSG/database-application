@@ -8,11 +8,11 @@ const Sidebar = props =>{
 
     function onClickTabItem(tab){
         setTabItem(tab)
-        switch (tab.toLowerCase){
-            case ADMIN_MAIN_CONTENT.INVENTORY.toLowerCase:
+        switch (tab.toLowerCase()){
+            case ADMIN_MAIN_CONTENT.INVENTORY.toLowerCase():
                 props.handleMainContent(ADMIN_MAIN_CONTENT.INVENTORY)
                 break
-            case ADMIN_MAIN_CONTENT.CATEGORY.toLowerCase:
+            case ADMIN_MAIN_CONTENT.CATEGORY.toLowerCase():
                 props.handleMainContent(ADMIN_MAIN_CONTENT.CATEGORY)
                 break
             default:

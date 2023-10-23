@@ -7,6 +7,7 @@ import AddItemForm from '../components/AddItemForm/AddItemForm';
 import Sidebar from '../components/Sidebar/Sidebar';
 import { faWarehouse } from '@fortawesome/free-solid-svg-icons';
 import { faSitemap } from '@fortawesome/free-solid-svg-icons';
+import Header from '../components/Header/Header';
 
 const dashboardItems = ["Inventory", "Category"]
 const icons = [faWarehouse, faSitemap]
@@ -25,16 +26,20 @@ export default function Admin() {
     function handleDisplayAddForm(){
       setMainContent(ADMIN_MAIN_CONTENT.ADD_ITEM)
     }
-  
+    
+    var headerContent = ( <HeaderExtension
+      filter = {"Filter Inventory"}
+      add = {"Add Inventory"}
+      handleDisplayAddForm = {handleDisplayAddForm}
+
+    />)
+    if (mainContent === ADMIN_MAIN_CONTENT.CATEGORY){
+      headerContent = <Header/>
+    }
     return (
       <Wrapper>
         <header className='header'>
-          <HeaderExtension
-              filter = {"Filter Inventory"}
-              add = {"Add Inventory"}
-              handleDisplayAddForm = {handleDisplayAddForm}
-  
-          />
+         {headerContent}
         </header>
         <section className='main-section' style={{display : "flex"}}>
           <Sidebar items={dashboardItems} icons={icons} handleMainContent={setMainContent}/>
