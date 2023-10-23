@@ -3,11 +3,8 @@ import Test from './pages/test';
 import './styles/base.css';
 import './App.css';
 import Admin from './pages/Admin';
-
 function App() {
-  return (
-      <Admin/>
-  );
+  return <Admin />;
 }
 
 export default App;
