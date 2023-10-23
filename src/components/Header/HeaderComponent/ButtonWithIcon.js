@@ -6,12 +6,9 @@ const ButtonWithIcon = props =>{
     console.log(props.color)
     return <div 
             className='custom-button'
-            style={
-                    {
-                        color: props.color,
-                        backgroundColor: props.backgroundColor
-                    }
-                }
+            style={{color: props.color,
+                    backgroundColor: props.backgroundColor}}
+            onClick={props.onClickHandle}
             >
         {props.title}
         <nav>
@@ -19,6 +16,7 @@ const ButtonWithIcon = props =>{
                 icon ={props.icon} 
             />
         </nav>
+        <div> {props.children}</div>
     </div>
 }
 
