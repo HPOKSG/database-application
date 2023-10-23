@@ -1,0 +1,16 @@
+.custom-modal {
+  /* Your modal styles */
+  border: 2px solid #000;
+}
+
+.modal-title {
+  /* Title styles */
+  font-size: 24px;
+  color: #333;
+}
+
+.modal-body {
+  /* Body text styles */
+  font-size: 16px;
+  color: #666;
+}

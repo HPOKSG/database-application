@@ -13,6 +13,7 @@
     "axios": "^1.5.1",
     "font-awesome": "^4.7.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.1",
     "react-date-picker": "^10.5.2",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",

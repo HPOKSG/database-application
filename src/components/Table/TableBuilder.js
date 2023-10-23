@@ -37,9 +37,6 @@ function Table({ headers, rows, InputFormModal, onDelete, onEdit }) {
   const handleEdit = (rowIndex) => {
     setEditRowIndex(rowIndex);
   };
-  console.log('tableData', rows);
-  console.log('headers', headers);
-
   return (
     <Wrapper>
       <table className='custom-table'>

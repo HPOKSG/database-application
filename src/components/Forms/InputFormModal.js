@@ -23,13 +23,11 @@ function InputFormModal({ isOpen, onRequestClose, initialValues, onSave }) {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setEditedRow({ ...editedRow, [name]: value });
-    console.log(editedRow);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onSave(Object.values(editedRow));
-    console.log(Object.values(editedRow));
     onRequestClose(); // Close the modal after saving
   };
   useEffect(() => {
@@ -39,7 +37,6 @@ function InputFormModal({ isOpen, onRequestClose, initialValues, onSave }) {
       });
       setCategoryMap(categoryMap);
       setSelectedOption(categoryMap[editedRow.category]);
-      console.log('category', categoryMap);
     });
   }, []);
   return (

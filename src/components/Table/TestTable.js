@@ -5,12 +5,17 @@ import InputFormModal from '../Forms/InputFormModal';
 import TestInputUserModal from '../Forms/TestEditUserModal';
 import API_CONFIG from '../../config/apiConfig';
 import axios from 'axios';
+import { AlertModal, AlertModalBuilder } from '../AlertModal/AlertModal';
 function TestTable() {
   const [tableData, setTableData] = useState({
     headers: [],
     rows: [],
   });
   const [categoryMap, setCategoryMap] = useState({});
+  const [alertModal, setAlertModal] = useState({
+    show: false,
+    onHide: () => {},
+  });
   useEffect(() => {
     const response = axios.get(API_CONFIG.getAllProductAPI);
     const categoryResponse = axios.get(API_CONFIG.getAllCategoryAPI);
@@ -21,9 +26,7 @@ function TestTable() {
           categoryMap[entry._id] = entry.name;
         });
       })
-      .then(() => {
-        console.log('category', categoryMap);
-      });
+      .then(() => {});
 
     response.then((res) => {
       const tableBuilder = new TableBuilder();
@@ -57,8 +60,6 @@ function TestTable() {
     });
   }, []);
   const handleSaveEdit = async (rowData, editRowIndex) => {
-    console.log('save edit', rowData, editRowIndex);
-    console.log(rowData[2]);
     const tempObj = {
       product_id: rowData[0],
       product_name: rowData[1],
@@ -71,7 +72,6 @@ function TestTable() {
       unit_in_stock: rowData[8],
       unit_on_order: rowData[9],
     };
-    console.log(tempObj);
     const response = await axios.post(
       API_CONFIG.updateProductByIdAPI + '/' + tempObj.product_id,
       { query: tempObj },
@@ -83,7 +83,6 @@ function TestTable() {
     );
     tempObj.category_id = categoryMap[tempObj.category_id];
     const tempArr = Object.values(tempObj);
-    console.log(tempArr);
     setTableData((prevTableData) => {
       const newRows = [...prevTableData.rows];
       newRows[editRowIndex] = tempArr;
@@ -93,14 +92,46 @@ function TestTable() {
       };
     });
   };
-
+  const handleDelete = async (rowData, rowIndex) => {
+    console.log('Clicked delete');
+    const alertModalBuilder = new AlertModalBuilder();
+    alertModalBuilder.setTitle('Delete User');
+    alertModalBuilder.setMessage('Are you sure you want to delete this user?');
+    alertModalBuilder.setOnConfirm(() => {
+      // const response = axios.delete(
+      //   API_CONFIG.deleteUserByIdAPI + '/' + rowData[0]
+      // );
+      // setTableData((prevTableData) => {
+      //   const newRows = [...prevTableData.rows];
+      //   newRows.splice(rowIndex, 1);
+      //   return {
+      //     ...prevTableData,
+      //     rows: newRows,
+      //   };
+      // });
+      console.log('Delete');
+    });
+    alertModalBuilder.setShow(true);
+    alertModalBuilder.setOnHide(() => {
+      alertModalBuilder.setShow(false);
+    });
+    console.log(alertModal);
+    setAlertModal(alertModalBuilder.build());
+    console.log(alertModal);
+  };
   return (
     <Wrapper>
+      <AlertModal
+        isOpen={true}
+        onRequestClose={alertModal.onHide}
+        title={alertModal.title}
+        message={alertModal.message}
+      />
       <Table
         headers={tableData.headers}
         rows={tableData.rows}
         InputFormModal={InputFormModal}
-        onDelete={() => {}}
+        onDelete={handleDelete}
         onEdit={handleSaveEdit}
       />
     </Wrapper>
