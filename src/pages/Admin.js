@@ -11,17 +11,19 @@ import { faSitemap } from '@fortawesome/free-solid-svg-icons';
 const dashboardItems = ["Inventory", "Category"]
 const icons = [faWarehouse, faSitemap]
 
-const ADMIN_TAB_ITEM = {
+const ADMIN_MAIN_CONTENT = {
     INVENTORY: 'INVENTORY',
-    CATEGORY: 'CATEGORY'
+    CATEGORY: 'CATEGORY',
+    ADD_ITEM: 'ADD_ITEM',
+    ADD_CATEGORY: 'ADD_CATEGORY'
 }
 
+export {ADMIN_MAIN_CONTENT}
 
 export default function Admin() {
-    const [isAddItem,setAddItemState] = useState(false)
-    const [tabItem,setTabItem] = useState(ADMIN_TAB_ITEM.INVENTORY)
+    const [mainContent,setMainContent] = useState(ADMIN_MAIN_CONTENT.INVENTORY)
     function handleDisplayAddForm(){
-      setAddItemState(true)
+      setMainContent(ADMIN_MAIN_CONTENT.ADD_ITEM)
     }
   
     return (
@@ -35,9 +37,9 @@ export default function Admin() {
           />
         </header>
         <section className='main-section' style={{display : "flex"}}>
-          <Sidebar items={dashboardItems} icons={icons}/>
-          {!isAddItem && <TestTable/>}
-          {isAddItem && <AddItemForm/>}
+          <Sidebar items={dashboardItems} icons={icons} handleMainContent={setMainContent}/>
+          {mainContent === ADMIN_MAIN_CONTENT.INVENTORY && <TestTable/>}
+          {mainContent === ADMIN_MAIN_CONTENT.ADD_ITEM && <AddItemForm/>}
           {/* <FilterFormBuilder></FilterFormBuilder> */}
         </section>
       </Wrapper>

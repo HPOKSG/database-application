@@ -18,7 +18,7 @@ const AddItemForm = props=>{
              <Item
                 inputName = "Inventory Volume"
                 placeholder = "Please Enter Volume"
-                type = "text"
+                type = "number"
             />
         </div>
         <div className='submit-btn'><p>Submit</p></div>
