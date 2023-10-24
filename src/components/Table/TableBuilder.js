@@ -1,6 +1,6 @@
 import React from 'react';
 import './Table.css';
-import Wrapper from '../Helpers/Wrapper'
+import Wrapper from '../Helpers/Wrapper';
 import { useState } from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,23 +31,12 @@ class TableBuilder {
 
 // Table component that renders the table
 
-function Table({ headers, rows, InputFormModal, onDelete, children }) {
-  const [tableData, setTableData] = useState([...rows]);
+function Table({ headers, rows, InputFormModal, onDelete, onEdit }) {
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
   const handleEdit = (rowIndex) => {
     setEditRowIndex(rowIndex);
   };
-
-  const handleSaveEdit = (rowData) => {
-    console.log('rowData', rowData);
-
-    const updatedTableData = [...tableData];
-    updatedTableData[editRowIndex] = rowData;
-    setTableData(updatedTableData);
-    setEditRowIndex(null);
-  };
-
   return (
     <Wrapper>
       <table className='custom-table'>
@@ -60,7 +49,7 @@ function Table({ headers, rows, InputFormModal, onDelete, children }) {
           </tr>
         </thead>
         <tbody>
-          {tableData.map((row, rowIndex) => (
+          {rows.map((row, rowIndex) => (
             <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'even' : 'odd'}>
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex}>{cell}</td>
@@ -77,9 +66,6 @@ function Table({ headers, rows, InputFormModal, onDelete, children }) {
                 <button
                   onClick={() => {
                     onDelete(rowIndex);
-                    const updatedTableData = [...tableData];
-                    updatedTableData.splice(rowIndex, 1);
-                    setTableData(updatedTableData);
                   }}
                   className='icon-button'>
                   <FontAwesomeIcon icon={faTrash} />
@@ -94,8 +80,11 @@ function Table({ headers, rows, InputFormModal, onDelete, children }) {
         <InputFormModal
           isOpen={modalIsOpen}
           onRequestClose={() => setEditRowIndex(null)}
-          initialValues={tableData[editRowIndex]}
-          onSave={handleSaveEdit}
+          initialValues={rows[editRowIndex]}
+          onSave={(editedRow) => {
+            onEdit(editedRow, editRowIndex);
+            setEditRowIndex(null);
+          }}
         />
       )}
     </Wrapper>
