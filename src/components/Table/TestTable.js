@@ -11,15 +11,17 @@ function TestTable() {
     headers: [],
     rows: [],
   });
-  const [categoryMap, setCategoryMap] = useState({});
   const [alertModal, setAlertModal] = useState({
     show: false,
     onHide: () => {},
+    title: '',
+    message: '',
+    onConfirm: () => {},
   });
+  const [categoryMap, setCategoryMap] = useState({});
   useEffect(() => {
     const response = axios.get(API_CONFIG.getAllProductAPI);
     const categoryResponse = axios.get(API_CONFIG.getAllCategoryAPI);
-
     categoryResponse
       .then((res) => {
         res.data.forEach((entry) => {
@@ -95,13 +97,19 @@ function TestTable() {
           rows: newRows,
         };
       });
+      setAlertModal((previousAlertModal) => {
+        return {
+          ...previousAlertModal,
+          show: false,
+        };
+      });
     });
     alertModal.setShow(true);
     alertModal.setOnHide(() => {
       alertModal.setShow(false);
-      setAlertModal((previoudAlertModal) => {
+      setAlertModal((previousAlertModal) => {
         return {
-          ...previoudAlertModal,
+          ...previousAlertModal,
           show: false,
         };
       });
@@ -114,21 +122,21 @@ function TestTable() {
     alertModalBuilder.setTitle('Delete User');
     alertModalBuilder.setMessage('Are you sure you want to delete this user?');
     alertModalBuilder.setOnConfirm(() => {
-      // const response = axios.delete(
-      //   API_CONFIG.deleteUserByIdAPI + '/' + rowData[0]
-      // );
-      // setTableData((prevTableData) => {
-      //   const newRows = [...prevTableData.rows];
-      //   newRows.splice(rowIndex, 1);
-      //   return {
-      //     ...prevTableData,
-      //     rows: newRows,
-      //   };
-      // });
-      console.log('Delete');
-      setAlertModal((previoudAlertModal) => {
+      const response = axios.delete(
+        API_CONFIG.deleteUserByIdAPI + '/' + rowData[0]
+      );
+      setTableData((prevTableData) => {
+        const newRows = [...prevTableData.rows];
+        newRows.splice(rowIndex, 1);
         return {
-          ...previoudAlertModal,
+          ...prevTableData,
+          rows: newRows,
+        };
+      });
+      console.log('Delete');
+      setAlertModal((previousAlertModal) => {
+        return {
+          ...previousAlertModal,
           show: false,
         };
       });
@@ -136,9 +144,9 @@ function TestTable() {
     alertModalBuilder.setShow(true);
     alertModalBuilder.setOnHide(() => {
       alertModalBuilder.setShow(false);
-      setAlertModal((previoudAlertModal) => {
+      setAlertModal((previousAlertModal) => {
         return {
-          ...previoudAlertModal,
+          ...previousAlertModal,
           show: false,
         };
       });
