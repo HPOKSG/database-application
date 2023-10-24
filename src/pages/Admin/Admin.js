@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
-import Wrapper from '../components/Helpers/Wrapper';
-import HeaderExtension from '../components/Header/HeaderExtension';
-import TestTable from '../components/Table/TestTable';
-import AddItemForm from '../components/AddItemForm/AddItemForm';
-import Sidebar from '../components/Sidebar/Sidebar';
+import Wrapper from '../../components/Helpers/Wrapper';
+import HeaderExtension from '../../components/Header/HeaderExtension';
+import TestTable from '../../components/Table/TestTable';
+import AddItemForm from '../../components/AddItemForm/AddItemForm';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import { faWarehouse } from '@fortawesome/free-solid-svg-icons';
 import { faSitemap } from '@fortawesome/free-solid-svg-icons';
-import Header from '../components/Header/Header';
+import Header from '../../components/Header/Header';
 
 const dashboardItems = ["Inventory", "Category"]
 const icons = [faWarehouse, faSitemap]

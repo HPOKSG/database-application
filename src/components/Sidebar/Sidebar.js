@@ -2,7 +2,7 @@ import "./Sidebar.css"
 import SidebarItem from "./SidebarItem";
 import { useState } from "react";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { ADMIN_MAIN_CONTENT } from "../../pages/Admin";
+import { ADMIN_MAIN_CONTENT } from "../../pages/Admin/Admin";
 const Sidebar = props =>{
     const [currTabItem, setTabItem] = useState(props.items[0])
 

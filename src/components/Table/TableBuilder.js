@@ -31,7 +31,7 @@ class TableBuilder {
 
 // Table component that renders the table
 
-function Table({ headers, rows, InputFormModal, onDelete }) {
+function Table({ headers, rows, InputFormModal, onDelete, children }) {
   const [tableData, setTableData] = useState([...rows]);
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -84,6 +84,7 @@ function Table({ headers, rows, InputFormModal, onDelete }) {
                   className='icon-button'>
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
+                {children}
               </td>
             </tr>
           ))}
