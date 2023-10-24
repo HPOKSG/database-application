@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-modal';
+import './AlertModal.css';
 Modal.setAppElement('#root');
 class AlertModalBuilder {
   constructor() {
@@ -44,6 +45,7 @@ class AlertModalBuilder {
 }
 
 const AlertModal = ({ show, onHide, title, message, onConfirm }) => {
+  console.log(show);
   return (
     <Modal
       isOpen={show}

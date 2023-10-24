@@ -60,37 +60,53 @@ function TestTable() {
     });
   }, []);
   const handleSaveEdit = async (rowData, editRowIndex) => {
-    const tempObj = {
-      product_id: rowData[0],
-      product_name: rowData[1],
-      category_id: rowData[2],
-      product_desc: rowData[3],
-      price: rowData[4],
-      width: rowData[5],
-      height: rowData[6],
-      length: rowData[7],
-      unit_in_stock: rowData[8],
-      unit_on_order: rowData[9],
-    };
-    const response = await axios.post(
-      API_CONFIG.updateProductByIdAPI + '/' + tempObj.product_id,
-      { query: tempObj },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    tempObj.category_id = categoryMap[tempObj.category_id];
-    const tempArr = Object.values(tempObj);
-    setTableData((prevTableData) => {
-      const newRows = [...prevTableData.rows];
-      newRows[editRowIndex] = tempArr;
-      return {
-        ...prevTableData,
-        rows: newRows,
+    const alertModal = new AlertModalBuilder();
+    alertModal.setTitle('Edit User');
+    alertModal.setMessage('Are you sure you want to edit this user?');
+    alertModal.setOnConfirm(async () => {
+      const tempObj = {
+        product_id: rowData[0],
+        product_name: rowData[1],
+        category_id: rowData[2],
+        product_desc: rowData[3],
+        price: rowData[4],
+        width: rowData[5],
+        height: rowData[6],
+        length: rowData[7],
+        unit_in_stock: rowData[8],
+        unit_on_order: rowData[9],
       };
+      const response = await axios.post(
+        API_CONFIG.updateProductByIdAPI + '/' + tempObj.product_id,
+        { query: tempObj },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      tempObj.category_id = categoryMap[tempObj.category_id];
+      const tempArr = Object.values(tempObj);
+      setTableData((prevTableData) => {
+        const newRows = [...prevTableData.rows];
+        newRows[editRowIndex] = tempArr;
+        return {
+          ...prevTableData,
+          rows: newRows,
+        };
+      });
     });
+    alertModal.setShow(true);
+    alertModal.setOnHide(() => {
+      alertModal.setShow(false);
+      setAlertModal((previoudAlertModal) => {
+        return {
+          ...previoudAlertModal,
+          show: false,
+        };
+      });
+    });
+    setAlertModal(alertModal.build());
   };
   const handleDelete = async (rowData, rowIndex) => {
     console.log('Clicked delete');
@@ -110,23 +126,37 @@ function TestTable() {
       //   };
       // });
       console.log('Delete');
+      setAlertModal((previoudAlertModal) => {
+        return {
+          ...previoudAlertModal,
+          show: false,
+        };
+      });
     });
     alertModalBuilder.setShow(true);
     alertModalBuilder.setOnHide(() => {
       alertModalBuilder.setShow(false);
+      setAlertModal((previoudAlertModal) => {
+        return {
+          ...previoudAlertModal,
+          show: false,
+        };
+      });
+      console.log('Hide');
     });
-    console.log(alertModal);
     setAlertModal(alertModalBuilder.build());
-    console.log(alertModal);
   };
   return (
     <Wrapper>
-      <AlertModal
-        isOpen={true}
-        onRequestClose={alertModal.onHide}
-        title={alertModal.title}
-        message={alertModal.message}
-      />
+      {alertModal.show && (
+        <AlertModal
+          show={alertModal.show}
+          onHide={alertModal.onHide}
+          title={alertModal.title}
+          message={alertModal.message}
+          onConfirm={alertModal.onConfirm}
+        />
+      )}
       <Table
         headers={tableData.headers}
         rows={tableData.rows}
