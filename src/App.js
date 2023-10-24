@@ -6,9 +6,7 @@ import Admin from './pages/Admin/Admin';
 
 function App() {
   return (
-   
       <Admin />
-    
   );
 }
 

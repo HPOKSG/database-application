@@ -8,7 +8,6 @@ import './Header.css'
 const Header = props =>{
     console.log(props.children)
     return <Wrapper>
-        <Logo/>
         <div className="header-main-section">
             <Searchbar/> 
             {props.children}

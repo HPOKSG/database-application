@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import { Table } from '../../../components/Table/TableBuilder'
+import category from '../../../Module/category';
+import ExtendCategoryAction from './ExtendCategoryAction';
 
 const tableData = {
     headers: [
-      'Category Name',
+        'Category ID',
+        'Category Name',
     ],
+    rows:[]
   };
 
 async function getAllCategory(parentId) {
@@ -13,23 +17,45 @@ async function getAllCategory(parentId) {
         search_string: parentId,
     };
     let res = await category.search(body);
-    if (res.status == false) {
-        displayStatusModal(res.data.message, false);
-    } else {
-        console.log('display all category: ', res.data);
-        displayAllCategory(res.data);
-    }
+   
 }
 
 function CategoryTable({data}) {
-    var firstDisplayCategory = useRef
+    var [parentId,setParentId] = useState(null)
+    var [table,setTableInfo] = useState(tableData)
+    
+    useEffect(() => {
+        // Simulate an API call or data fetching
+        const body = {
+            search_attribute: 'parent',
+            search_string: parentId,
+        };
+        category.search(body)
+            .then(res => {
+                setTableInfo(prevTable => {
+                    return {
+                        ...prevTable,
+                        rows: [...res.data.map(item =>[item._id,item.name]), ['','']]
+                    };
+                });
+               
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        
+        return () => {
+            // Cleanup function (if needed)
+            // This function will be called when the component unmounts or when the dependencies change.
+        };
+    }, [parentId]); // The empty dependency array means this effect runs only once on component mount
 
-    [row, setRows] = useState()
-    function onDelete(){
+
+    function handleDelete(){
 
     }
 
-    function onEdit(){
+    function handleSaveEdit(){
 
     }
 
@@ -44,16 +70,17 @@ function CategoryTable({data}) {
     function onBackWard(){
 
     }
+   
     return <Table
-            headers={tableData.headers}
-            rows={tableData.rows}
-            InputFormModal={InputFormModal}
+            headers={table.headers}
+            rows={table.rows}
+            // InputFormModal={InputFormModal}
             onDelete={handleDelete}
             onEdit={handleSaveEdit}
-            
         >
-
+            <ExtendCategoryAction/>
         </Table>
+    
 
         
 }

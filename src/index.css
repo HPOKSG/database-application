@@ -26,5 +26,11 @@ header{
 }
 
 #root{
-  height: 100%;
+  display: grid;
+  grid-template-columns: 275px 1fr;
+  min-height: 100vh;
+}
+.section-left,.section-right{
+  display: grid;
+  grid-template-rows: 175px 70%;
 }
