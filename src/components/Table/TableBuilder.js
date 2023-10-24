@@ -50,7 +50,7 @@ function Table({ headers, rows, InputFormModal,children, onDelete, onEdit }) {
         </thead>
         <tbody>
           {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'even' : 'odd'}>
+            <tr key={row[0]} className={rowIndex % 2 === 0 ? 'even' : 'odd'}>
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex}>{cell}</td>
               ))}

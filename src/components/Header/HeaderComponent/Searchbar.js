@@ -1,28 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Searchbar.css'
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-function Searchbar(props) {
-    // const [searchTerm, setSearchTerm] = useState('');
-
-    // const handleInputChange = (event) => {
-    //     setSearchTerm(event.target.value);
-    // };
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     props.onSearch(searchTerm);
-    // };
+function Searchbar({placeholder,handleSearch}) {
+    const inputValue = useRef("");
 
     return (
        <div className='search-bar'>
-            <input 
+            <input ref={inputValue}
                 type='text' 
-                placeholder='Search Inventory...'>
+                placeholder={placeholder}>
             </input>
-            <search className='search-button'>
+            <div className='search-button' onClick={()=>{handleSearch(inputValue.current.value)}}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size='1x'/>
-            </search>
+            </div>
        </div>
     );
 }
