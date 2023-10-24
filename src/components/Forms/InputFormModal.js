@@ -19,7 +19,7 @@ function InputFormModal({ isOpen, onRequestClose, initialValues, onSave }) {
     unit_on_order: initialValues[9],
   });
   const [categoryMap, setCategoryMap] = useState({});
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState(initialValues[2]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setEditedRow({ ...editedRow, [name]: value });
@@ -36,7 +36,7 @@ function InputFormModal({ isOpen, onRequestClose, initialValues, onSave }) {
         categoryMap[category._id] = category.name;
       });
       setCategoryMap(categoryMap);
-      setSelectedOption(categoryMap[editedRow.category]);
+      setSelectedOption(categoryMap[initialValues[2]]);
     });
   }, []);
   return (
