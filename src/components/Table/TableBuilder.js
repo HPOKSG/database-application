@@ -70,6 +70,7 @@ function Table({ headers, rows, InputFormModal, onDelete, onEdit }) {
                   className='icon-button'>
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
+                {children}
               </td>
             </tr>
           ))}

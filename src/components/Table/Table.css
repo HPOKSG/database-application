@@ -4,6 +4,7 @@
   width: 100%;
   margin-inline: 1rem;
   border-radius: 15px;
+  font-size: 1.2rem
 }
 
 .custom-table th,
@@ -18,6 +19,9 @@
 .custom-table thead {
   background-color: #d2eff2;
 }
+tr{
+  
+}
 
 .custom-table tr.even {
   background-color: #f1faff;
@@ -31,4 +35,5 @@
   padding: 8px 12px; 
   background-color: transparent; 
   cursor: pointer; 
+  font-size: 1.2rem;
 }
