@@ -31,7 +31,7 @@ class TableBuilder {
 
 // Table component that renders the table
 
-function Table({ headers, rows, InputFormModal, onDelete, onEdit }) {
+function Table({ headers, rows, InputFormModal,children, onDelete, onEdit }) {
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
   const handleEdit = (rowIndex) => {

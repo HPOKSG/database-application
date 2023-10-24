@@ -2,14 +2,13 @@ import logo from './logo.svg';
 import Test from './pages/test';
 import './styles/base.css';
 import './App.css';
-import Admin from './pages/Admin';
-import { useState } from 'react';
-import { AlertModal } from './components/AlertModal/AlertModal';
+import Admin from './pages/Admin/Admin';
+
 function App() {
   return (
-    <div>
+   
       <Admin />
-    </div>
+    
   );
 }
 
