@@ -1,14 +1,14 @@
-import React from 'react'
-import { Table } from '../../../components/Table/TableBuilder'
+// import React from 'react'
+// import { Table } from '../../../components/Table/TableBuilder'
 
-const tableData = {
-    headers: [
-      'Category Name',
-    ],
-  };
+// const tableData = {
+//     headers: [
+//       'Category Name',
+//     ],
+//   };
 
-function CategoryTable({data}) {
-  return <Table/>
-}
+// function CategoryTable({data}) {
+// //   return <Table/>
+// }
 
-export default CategoryTable
+// export default CategoryTable
