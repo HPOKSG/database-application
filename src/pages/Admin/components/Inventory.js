@@ -44,8 +44,6 @@ function Inventory() {
               onClickHandle = {openAddInventoryForm}
           />
         </Header>
-        
-
         {!isAddInventory && <TestTable/>}
         {isAddInventory && <AddItemForm/>}
     </Wrapper>

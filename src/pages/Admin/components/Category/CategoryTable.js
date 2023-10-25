@@ -1,7 +1,8 @@
 import React, { useRef, useState,useEffect } from 'react'
-import { Table } from '../../../components/Table/TableBuilder'
-import category from '../../../Module/category';
+import { Table } from '../../../../components/Table/TableBuilder'
+import category from '../../../../Module/category';
 import ExtendCategoryAction from './ExtendCategoryAction';
+import CategoryModal from './CategoryModal';
 
 const tableData = {
     headers: [
@@ -20,9 +21,9 @@ async function getAllCategory(parentId) {
    
 }
 
-function CategoryTable({data}) {
+function CategoryTable({data,handleEdit,handleCreate}) {
     
-
+    
 
     function handleDelete(){
 
@@ -49,13 +50,12 @@ function CategoryTable({data}) {
             rows={data.rows}
             // InputFormModal={InputFormModal}
             onDelete={handleDelete}
-            onEdit={handleSaveEdit}
+            onEdit={handleEdit}
         >
-            <ExtendCategoryAction/>
+            <ExtendCategoryAction
+                createItem={handleCreate} 
+            />
         </Table>
-    
-
-        
 }
 
 export default CategoryTable

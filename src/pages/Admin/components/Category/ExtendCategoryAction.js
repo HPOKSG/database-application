@@ -1,15 +1,15 @@
 import React from 'react'
-import Wrapper from '../../../components/Helpers/Wrapper'
+import Wrapper from '../../../../components/Helpers/Wrapper'
 import {faChevronRight, faPlus} from '@fortawesome/free-solid-svg-icons'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function ExtendCategoryAction() {
+function ExtendCategoryAction({createItem, handleForward, handleBackward}) {
   return (
     <Wrapper>
         <button
             onClick={() => {
-                // onDelete(rowIndex);
+                createItem();
             }}
             className='icon-button'>
             <FontAwesomeIcon icon={faPlus} />
